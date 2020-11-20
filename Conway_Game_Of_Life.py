@@ -7,7 +7,7 @@ def get_generation(cells, generations):
 
     while (numGens < generations):
         for r in range(row):
-            for c in range(col): #OOP
+            for c in range(col):
                 if (r == 0):
                     if (c == 0):
                         neighborCells = cells[r][c + 1] + sum(cells[r + 1][c:c + 2])  # Upper left corner
