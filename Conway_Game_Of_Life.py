@@ -5,7 +5,7 @@ def get_generation(cells, generations):
     neighborCells = 0
     newCells = [[0 for x in range(col)] for y in range(row)]
 
-    while (numGens < generations): #Hello
+    while (numGens < generations):
         for r in range(row):
             for c in range(col):
                 if (r == 0):
