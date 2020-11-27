@@ -3,7 +3,7 @@ def get_generation(cells, generations):
     col = len(cells[0])
     numGens = 0
     neighborCells = 0
-    newCells = [[0] * col] * row
+    newCells = [[0 for x in range(col)] for y in range(row)]
 
     while (numGens < generations):
         for r in range(row):
@@ -31,19 +31,27 @@ def get_generation(cells, generations):
                     elif (c == col - 1):
                         neighborCells = cells[r][c - 1] + sum(cells[r - 1][c - 1:c + 1]) + sum(
                             cells[r + 1][c - 1:c + 1])  # Right perimeter
+                    else:
+                        neighborCells = cells[r][c - 1] + cells[r][c + 1] + sum(cells[r - 1][c - 1:c + 2]) + sum(
+                            cells[r + 1][c - 1:c + 2])  # General case
                 else:
                     neighborCells = cells[r][c - 1] + cells[r][c + 1] + sum(cells[r - 1][c - 1:c + 2]) + sum(
                         cells[r + 1][c - 1:c + 2])  # General case
 
-                if (cells[r][c] == 1 and 2 < neighborCells < 3):
+                if (cells[r][c] == 1 and 2 <= neighborCells <= 3):
                     newCells[r][c] = 1
                 if (cells[r][c] == 1 and neighborCells < 2):
                     newCells[r][c] = 0
-                if (cells[r][c] == 1 and neighborCells > 3):
+                elif (cells[r][c] == 1 and neighborCells > 3):
                     newCells[r][c] = 0
-                if (cells[r][c] == 0 and neighborCells == 3):
+                elif (cells[r][c] == 0 and neighborCells == 3):
                     newCells[r][c] = 1
+
         cells = newCells
         numGens += 1
 
-    return newCells
+    return cells
+
+print(get_generation([[1,0,0],[0,1,1],[1,1,0]], 3))
+
+
