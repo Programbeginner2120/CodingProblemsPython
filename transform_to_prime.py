@@ -2,7 +2,6 @@
 
 import math
 
-
 def isPrime(number):
     if (number <= 1):
         return False
